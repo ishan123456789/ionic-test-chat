@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chat</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div class="container">
+    <div *ngFor="let message of messages" class="message left">
+      <ion-icon class="user-img" name="contact"></ion-icon>
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            {{message.sender}} {{message.dateTime | date :  "dd.MM.y HH:mm" }}
+          </p>
+        </div>
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{message.msg}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer no-border>
+      <div class="input-wrap">        
+        <textarea #messageInput
+                  placeholder="Enter your message!"
+                  [(ngModel)]="chatMessage"
+                  (keyup.enter)="sendMessage()">
+        </textarea>
+        <button ion-button clear icon-only item-right (click)="sendMessage()">
+          <ion-icon name="ios-send" ios="ios-send" md="md-send"></ion-icon>
+        </button>
+      </div>     
+</ion-footer>
